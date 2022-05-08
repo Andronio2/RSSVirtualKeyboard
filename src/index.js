@@ -1,5 +1,5 @@
-import Control from './control';
-import keys from './keysdata';
+import Control from './control.js';
+import keys from './keysdata.js';
 import './style.scss';
 
 const wrapper = new Control(document.body, 'div', 'wrapper');
