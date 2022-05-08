@@ -1,5 +1,5 @@
-import Control from './control.js';
-import keys from './keysdata.js';
+import Control from './control';
+import keys from './keysdata';
 import './style.scss';
 
 const wrapper = new Control(document.body, 'div', 'wrapper');
@@ -8,7 +8,8 @@ signal.node.textContent = 'RS School Virtual Keyboard';
 const editor = new Control(wrapper.node, 'textarea', 'editor');
 editor.node.value = 'Начальный текст\nдля проверки\nСмена раскладки клавиатуры - левые Shift + Ctrl';
 const info = new Control(document.body, 'div', 'info');
-info.node.innerText = 'Клавиатура создана для операционной системы Windows\nДля переключения раскладки языка комбинация: левые Shift + Ctrl';
+info.node.innerText = 'Клавиатура создана для операционной системы Windows\nДля переключения раскладки языка комбинация: левые Shift + Ctrl\n';
+info.node.innerText += 'Клавиша Shift фиксируется на 1 нажатие кнопки\nCapsLock - первое нажатие включает, второе выключает';
 
 let globEnglish = true; // true, если включен английский; false, если русский
 let globShift = false;
@@ -245,7 +246,7 @@ keyboard.node.addEventListener('mouseup', (event) => {
 keyboard.node.addEventListener('mouseout', (event) => {
   const key = event.target.closest('.key');
   if (!key) return;
-  const keycode = key.dataset.keycode;
+  const { keycode } = key.dataset;
   if (keycode === 'ShiftLeft' || keycode === 'ShiftRight' || keycode === 'CapsLock') return;
   const hover = key.parentNode.querySelector(':hover');
   if (hover === key) return;
